@@ -9,12 +9,14 @@ public class Player : MonoBehaviour
     [SerializeField] float nextFire;
 
 
-
+    public bool paused = false;
     float minX, maxX, minY, maxY, tamX, tamY, canFire;
 
     // Start is called before the first frame update
     void Start()
     {
+        paused = false;
+        Time.timeScale = 1;
         tamX = (GetComponent<SpriteRenderer>()).bounds.size.x;
         tamY = (GetComponent<SpriteRenderer>()).bounds.size.y;
 
@@ -32,8 +34,12 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Movement();
-        Fire();
+        if(!paused)
+        {
+            Movement();
+            Fire();
+
+        }
     }
 
     void Movement()

@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] float speed;
     [SerializeField] bool direction;
+    [SerializeField] int lives;
     private float maxX;
     private float minX;
 
@@ -39,7 +40,12 @@ public class Enemy : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Bullet"))
         {
-            Destroy(this.gameObject);
+            lives--;
+            if( lives < 1)
+            {
+                Destroy(this.gameObject);
+
+            }
         }
     }
 }
